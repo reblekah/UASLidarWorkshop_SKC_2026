@@ -1,0 +1,117 @@
+#Alternative filtering methods
+
+Filter points based on their coordinates.
+  -keep_tile 631000 4834000 1000 (ll_x ll_y size)
+  -keep_circle 630250.00 4834750.00 100 (x y radius)
+  -keep_xy 630000 4834000 631000 4836000 (min_x min_y max_x max_y)
+  -drop_xy 630000 4834000 631000 4836000 (min_x min_y max_x max_y)
+  -keep_x 631500.50 631501.00 (min_x max_x)
+  -drop_x 631500.50 631501.00 (min_x max_x)
+  -drop_x_below 630000.50 (min_x)
+  -drop_x_above 630500.50 (max_x)
+  -keep_y 4834500.25 4834550.25 (min_y max_y)
+  -drop_y 4834500.25 4834550.25 (min_y max_y)
+  -drop_y_below 4834500.25 (min_y)
+  -drop_y_above 4836000.75 (max_y)
+  -keep_z 11.125 130.725 (min_z max_z)
+  -drop_z 11.125 130.725 (min_z max_z)
+  -drop_z_below 11.125 (min_z)
+  -drop_z_above 130.725 (max_z)
+  -keep_xyz 620000 4830000 100 621000 4831000 200 (min_x min_y min_z max_x max_y max_z)
+  -drop_xyz 620000 4830000 100 621000 4831000 200 (min_x min_y min_z max_x max_y max_z)
+Filter points based on their return numbering.
+  -keep_first -first_only -drop_first
+  -keep_last -last_only -drop_last
+  -keep_second_last -drop_second_last
+  -keep_first_of_many -keep_last_of_many
+  -drop_first_of_many -drop_last_of_many
+  -keep_middle -drop_middle
+  -keep_return 1 2 3
+  -drop_return 3 4
+  -keep_single -drop_single
+  -keep_double -drop_double
+  -keep_triple -drop_triple
+  -keep_quadruple -drop_quadruple
+  -keep_number_of_returns 5
+  -drop_number_of_returns 0
+Filter points based on the scanline flags.
+  -drop_scan_direction 0
+  -keep_scan_direction_change
+  -keep_edge_of_flight_line
+Filter points based on their intensity.
+  -keep_intensity 20 380
+  -drop_intensity_below 20
+  -drop_intensity_above 380
+  -drop_intensity_between 4000 5000
+Filter points based on classifications or flags.
+  -keep_class 1 3 7
+  -drop_class 4 2
+  -keep_extended_class 43
+  -drop_extended_class 129 135
+  -drop_synthetic -keep_synthetic
+  -drop_keypoint -keep_keypoint
+  -drop_withheld -keep_withheld
+  -drop_overlap -keep_overlap
+Filter points based on their user data.
+  -keep_user_data 1
+  -drop_user_data 255
+  -keep_user_data_below 50
+  -keep_user_data_above 150
+  -keep_user_data_between 10 20
+  -drop_user_data_below 1
+  -drop_user_data_above 100
+  -drop_user_data_between 10 40
+Filter points based on their point source ID.
+  -keep_point_source 3
+  -keep_point_source_between 2 6
+  -drop_point_source 27
+  -drop_point_source_below 6
+  -drop_point_source_above 15
+  -drop_point_source_between 17 21
+Filter points based on their scan angle.
+  -keep_scan_angle -15 15
+  -drop_abs_scan_angle_above 15
+  -drop_abs_scan_angle_below 1
+  -drop_scan_angle_below -15
+  -drop_scan_angle_above 15
+  -drop_scan_angle_between -25 -23
+Filter points based on their gps time.
+  -keep_gps_time 11.125 130.725
+  -drop_gps_time_below 11.125
+  -drop_gps_time_above 130.725
+  -drop_gps_time_between 22.0 48.0
+Filter points based on their RGB/CIR/NIR channels.
+  -keep_RGB_red 1 1
+  -drop_RGB_red 5000 20000
+  -keep_RGB_green 30 100
+  -drop_RGB_green 2000 10000
+  -keep_RGB_blue 0 0
+  -keep_RGB_nir 64 127
+  -keep_RGB_greenness 200 65535
+  -keep_NDVI 0.2 0.7 -keep_NDVI_from_CIR -0.1 0.5
+  -keep_NDVI_intensity_is_NIR 0.4 0.8 -keep_NDVI_green_is_NIR -0.2 0.2
+Filter points based on their wavepacket.
+  -keep_wavepacket 0
+  -drop_wavepacket 3
+Filter points based on extra attributes.
+  -keep_attribute_above 0 5.0
+  -drop_attribute_below 1 1.5
+Filter points with simple thinning.
+  -keep_every_nth 2 -drop_every_nth 3
+  -keep_random_fraction 0.1
+  -keep_random_fraction 0.1 4711
+  -thin_with_grid 1.0
+  -thin_with_voxel 0.1
+  -thin_pulses_with_time 0.0001
+  -thin_points_with_time 0.000001
+Boolean combination of filters.
+  -filter_and
+Fast AOI Queries for LAS/LAZ with spatial indexing LAX files
+  -inside min_x min_y max_x max_y
+  -inside_tile ll_x ll_y size
+  -inside_circle center_x center_y radius
+Fast AOI Queries for LAZ 1.4 with spatial indexing COPC VLR
+  -inside min_x min_y max_x max_y
+  -inside_circle center_x center_y radius
+  -max_depth 3
+  -resolution 0.1
